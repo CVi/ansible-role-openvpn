@@ -50,6 +50,27 @@
     state: absent
   when: not openvpn_use_ldap
 
+- name: Create openvpn client-config dir
+  file:
+    dest: "{{ openvpn_base_dir }}/ccd"
+    owner: root
+    group: root
+    state: directory
+  notify:
+    - restart openvpn
+  when: openvpn_clients_configs is defined
+
+- name: Create openvpn client-configs
+  copy:
+    dest: "{{ openvpn_base_dir }}/ccd/{{ openvpn_cn_prefix }}-{{ item.name[:24] }}"
+    owner: root
+    group: root
+    content: "{{ item.config }}"
+  notify:
+    - restart openvpn
+  loop: "{{ openvpn_clients_configs }}"
+  when: openvpn_clients_configs is defined
+
 - name: Install LDAP config
   template:
     src: ldap.conf.j2

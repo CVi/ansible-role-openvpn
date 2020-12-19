@@ -4,6 +4,7 @@ galaxy_info:
   namespace: kyl191
   author: Kyle Lexmond
   description: OpenVPN playbook for CentOS/Fedora/RHEL/RHEL clones & Ubuntu/Debian
+  role_name: openvpn
 
   license: MIT
   min_ansible_version: 2.9
