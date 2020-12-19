@@ -1,3 +1,6 @@
+Fork of kyl191's role with some generic pathes to enable site-to-site setups.
+
+
 openvpn
 =========
 Github Actions (PRs & mainline): ![Github CI](https://github.com/kyl191/ansible-role-openvpn/workflows/CI/badge.svg)
@@ -114,6 +117,15 @@ LDAP object
 | group_base_dn       | string |                           | ou=Groups,dc=example,dc=com             | Precise the group to look for. Required if require_group is set to "True"                    |
 | group_search_filter | string |                           | ((cn=developers)(cn=artists))           | Precise valid groups                                                                         |
 | verify_client_cert  | string | none , optional , require | client-cert-not-required                | In OpenVPN 2.4+ `client-cert-not-required` is deprecated. Use `verify-client-cert` instead.  |
+
+Site-to-site patch set
+| Variable                           | Type       | Choices           | Default                                          | Comment                                                                                                                                                                               |
+|------------------------------------|------------|-------------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| opnevpn_cn_prefix                  | string     |                   | "OpenVPN-Client-{{ inventory_hostname[:24] }}"   | Prefix for client certificate CN                                                                                                                                                      |
+| openvpn_extra_config_both          | string     |                   | <undefined>                                      | Extra config options that will be set both in client configs and server config                                                                                                        |
+| openvpn_extra_config_serve         | string     |                   | <undefined>                                      | Extra config options that will be set both in server config                                                                                                                           |
+| openvpn_clients_configs            | string     |                   | <undefined>                                      | Per client config values, arranged as name, config keys in a list. Un-elegant, but python2 and 3 compatible                                                                           |
+
 
 Dependencies
 ------------

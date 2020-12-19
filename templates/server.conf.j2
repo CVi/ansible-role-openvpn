@@ -118,3 +118,16 @@ verify-client-cert {{ ldap.verify_client_cert }}
 client-cert-not-required
 {% endif %}
 {% endif %}
+
+{% if openvpn_extra_config_both is defined %}
+{{openvpn_extra_config_both}}
+{% endif %}
+{% if openvpn_extra_config_server is defined %}
+{{openvpn_extra_config_server}}
+{% endif %}
+
+
+
+{% if openvpn_clients_configs is defined %}
+client-config-dir ccd
+{% endif %}

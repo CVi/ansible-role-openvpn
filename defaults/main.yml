@@ -81,3 +81,14 @@ openvpn_logrotate_config: |
   sharedscripts
   copytruncate
   delaycompress
+
+# Site to site patch-set
+openvpn_cn_prefix: "OpenVPN-Client-{{ inventory_hostname[:24] }}"
+#openvpn_extra_config_both: |
+#    foo: bar
+#openvpn_extra_config_server: |
+#    route: 192.168.32.0 255.255.224.0
+#openvpn_clients_configs:
+#  - name: foo
+#    config: |
+#        iroute: 192.168.45.9 255.255.255.9
